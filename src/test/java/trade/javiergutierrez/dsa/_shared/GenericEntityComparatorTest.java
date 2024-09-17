@@ -21,7 +21,7 @@ class GenericEntityComparatorTest {
         userEntity.setUsername("username");
         userEntity.setEmail("email@example.com");
         userEntity.setAge(30);
-        userEntity.setExtraProperty("extra"); // Suponiendo que está anotado con @Transient
+        userEntity.setExtraProperty("extra");
 
         userDTO = new UserDTO();
         userDTO.setId(1L);
@@ -32,7 +32,7 @@ class GenericEntityComparatorTest {
 
     @Test
     void whenEntitiesHaveChanges_thenDetectChanges() {
-        // Modificar valores en el DTO para simular cambios
+
         userDTO.setUsername("newUsername");
         userDTO.setEmail("newEmail@example.com");
         userDTO.setAge(31);
