@@ -1,5 +1,7 @@
 package trade.javiergutierrez.dsa._shared;
 
+import trade.javiergutierrez.dsa._shared.annotations.IgnoreInComparison;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +48,7 @@ public class GenericEntityComparator {
     }
 
     private static boolean isFieldComparable(Field entityField, Map<String, Field> dtoFieldMap) {
-        return !entityField.isAnnotationPresent(jakarta.persistence.Transient.class)
+        return !entityField.isAnnotationPresent(IgnoreInComparison.class)
                 && dtoFieldMap.containsKey(entityField.getName());
     }
 

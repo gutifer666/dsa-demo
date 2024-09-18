@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import trade.javiergutierrez.dsa._shared.annotations.IgnoreInComparison;
 
 @Entity
 @Table(name = "users")
@@ -21,7 +21,7 @@ public class UserEntity {
     @Column(name = "age")
     private Integer age;
 
-    @Transient
+    @IgnoreInComparison
     private String extraProperty;
 
     public Long getId() {
