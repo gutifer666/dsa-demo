@@ -2,7 +2,7 @@ package trade.javiergutierrez.dsa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import trade.javiergutierrez.dsa._shared.GenericEntityComparator;
+import trade.javiergutierrez.dsa._shared.ObjectComparator;
 import trade.javiergutierrez.dsa.dto.UserDTO;
 import trade.javiergutierrez.dsa.entity.UserEntity;
 
@@ -29,7 +29,7 @@ public class DsaApplication {
         userDTO.setAge(31);
 
         // Comparar las entidades
-        Map<String, Object[]> changes = GenericEntityComparator.compareEntities(userEntity, userDTO);
+        Map<String, Object[]> changes = ObjectComparator.compareFields(userEntity, userDTO);
 
         // Imprimir los cambios por consola
         changes.forEach((fieldName, values) -> {
