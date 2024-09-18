@@ -10,19 +10,21 @@ public class GenericEntityComparator {
 
         Map<String, Object[]> changes = new HashMap<>();
         Map<String, Field> dtoFieldMap = getFieldMap(dto);
-        Field[] entityFields = entity.getClass().getDeclaredFields();
+        Map<String, Field> entityFieldMap = getFieldMap(entity);
 
-        for (Field entityField : entityFields) {
+        for (Map.Entry<String, Field> entry : entityFieldMap.entrySet()) {
+            String fieldName = entry.getKey();
+            Field entityField = entry.getValue();
             entityField.setAccessible(true);
 
             if (isFieldComparable(entityField, dtoFieldMap)) {
-                Field dtoField = dtoFieldMap.get(entityField.getName());
+                Field dtoField = dtoFieldMap.get(fieldName);
                 try {
                     Object entityValue = entityField.get(entity);
                     Object dtoValue = dtoField.get(dto);
 
                     if (hasValueChanged(entityValue, dtoValue)) {
-                        changes.put(entityField.getName(), new Object[]{entityValue, dtoValue});
+                        changes.put(fieldName, new Object[]{entityValue, dtoValue});
                     }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
